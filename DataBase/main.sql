@@ -1,203 +1,190 @@
-DROP TABLE eventos cascade constraints; 
+drop database LBGAPP;
 
-DROP TABLE empresas cascade constraints; 
-
-DROP TABLE documentos cascade constraints; 
-
---DROP TABLE internos cascade constraints; 
-
---DROP TABLE externos cascade constraints; 
-
-DROP TABLE equipas cascade constraints; 
-
-DROP TABLE cargos cascade constraints; 
-
-DROP TABLE mandatos cascade constraints; 
-
-DROP TABLE pessoas cascade constraints; 
-
-DROP TABLE membros cascade constraints; 
-
-DROP TABLE participantes cascade constraints; 
-
-DROP TABLE participacoes cascade constraints; 
-
- 
+Create database LBGAPP;
+USE LBGAPP;	
 
 -- Criacao de tabelas 
+	CREATE TABLE eventos ( 
+	idEquipa int(4), 
 
-CREATE TABLE eventos ( 
+	idEvento int(4), 
 
-	idEquipa number(4), 
+	nome varchar(30), 
 
-	idEvento number(4), 
+	descricao varchar(200), 
 
-nome varchar2(30), 
+	numTotalParticipantes int(4), 
 
-descricao varchar2(200), 
+	numAtualParticipantes int(4), 
 
-numTotalParticipantes number(4), 
+	numAtualOrganizers int(4), 
 
-numAtualParticipantes number(4), 
+	dataInicio date, 
 
-numAtualOrganizers number(4), 
+	dataFim date,
 
-dataInicio date, 
+	primary key(idEquipa,idEvento)
 
-dataFim date, 
+	); 
 
-); 
 
- 
+	CREATE TABLE empresas( 
 
-CREATE TABLE empresas( 
+	idEmpresa int(4), 
 
-idEmpresa number(4), 
+	nome varchar(30), 
 
-nome varchar2(30), 
+	dinheiroFinanciado int(5),
 
-dinheiroFinanciado number(5), 
+	categoria varchar(80)
 
-); 
+	); 
 
- 
+		
 
-CREATE TABLE documentos( 
+	CREATE TABLE documentos( 
 
-	IdDocumento number(6), 
+	idDocumento int(6), 
 
-	tipo varchar2(10), 
+	tipo varchar(10), 
 
-nome varchar2(50), 
+	nome varchar(50), ada IT team is comprised of the following individu
+	dataCriacao Date, 
 
-descricao varchar2(200), 
+	localizacao varchar(200)
 
-dataCriacao Date, 
+	); 
 
-localizacao varchar2(200), 
 
-); 
+	CREATE TABLE equipas( 
 
- 
+	idEquipa int(2), 
 
-CREATE TABLE equipas( 
+	nome varchar(20), 
 
-	idEquipa number(2), 
+	numMembros int(2)
 
-	nome varchar2(10), 
+	); 
 
-	numMembros number(2), 
 
-); 
+	CREATE TABLE cargos( 
 
- 
+	idCargo int(3), 
 
-CREATE TABLE cargos( 
+	nome varchar(30), 
 
-idCargo number(3), 
+	descricao varchar(100) 
 
-nome varchar2(30), 
+	); 
 
-descricao varchar2(100),  
 
-); 
+	CREATE TABLE mandatos( 
 
- 
+	idCargo int(3), 
 
-CREATE TABLE mandatos( 
+	email varchar(50), 
 
-	idCargo number(3), 
+	dataInicio date, 
 
-email varchar2(50), 
+	dataFim date,
 
-dataInicio date, 
+	primary key (idCargo,email,dataInicio)
 
-dataFim date. 
+	); 
 
-); 
 
- 
+	CREATE TABLE pessoas( 
 
-CREATE TABLE pessoas( 
+	email varchar(50), 
 
-	email varchar2(50), 
+	descricao varchar(200), 
 
-	descricao varchar2(200), 
+	nome varchar(100), 
 
-	nome varchar2(100), 
-
-	alcunha varchar2(25), 
+	alcunha varchar(25), 
 
 	dataNascimento date, 
 
-	idade number(2), 
+	idade int(2), 
 
-	telemovel number(15), 
+	telemovel int(15), 
 
-	tamanho 
+	tamanho varchar(8)
 
-	 
+	); 
 
-); 
+		
+	CREATE TABLE membros( 
 
- 
+	email varchar(50),
 
-CREATE TABLE membros( 
-
-	membership varchar2(10), 
+	membership varchar(10), 
 
 	dataEntrada date, 
 
-	tempoLBGSemestres number(2), 
+	tempoLBGSemestres int(2), 
 
-historicoCargos varchar2(1000), 
+	foto varchar(4096), 
 
-foto varbinary(max), 
+	primary key (email)
 
-); 
+	); 
+	
 
- 
+	CREATE TABLE participantes( 
 
-CREATE TABLE participantes( 
+	email varchar(50),
 
 	dataExpiracaoDoc date, 
 
-contactoEmerg number(15), 
+	contactoEmerg int(15), 
 
-dieta varchar2(30), 
+	dieta varchar(30), 
 
-ultimaDataLogin date 
+	ultimaDataLogin date, 
 
-); 
+	primary key (email)
 
- 
+	); 
 
-CREATE TABLE participacoes( 
+		
+	CREATE TABLE participacoes( 
 
-	IdEvento number(4), 
+	IdEvento int(4), 
 
-email varchar2(30), 
+	email varchar(30), 
 
-dataInscricao date 
+	dataInscricao date 
 
-); 
+	); 
+		
 
- 
 
- 
+	-- Chaves primarias 
 
--- Chaves primarias 
+	alter table empresas add constraint pk_emp primary key(idEmpresa); 
 
-alter table evento add constraint pk_eve primary key(idEquipa, idEvento); 
+	alter table documentos add constraint pk_doc primary key(idDocumento); 
 
-alter table empresas add constraint pk_emp primary key(idEmpresa); 
+	alter table equipas add constraint pk_eqp primary key(idEquipa);
 
-alter table documentos add constraint pk_doc primary key(idDocumentos); 
+	alter table cargos add constraint pk_crg primary key(idCargo); 
 
-alter table equipas add constraint pk_eqp primary key(idEquipa); 
+	alter table pessoas add constraint pk_pes primary key(email); 
 
-alter table cargos add constraint pk_crg primary key(idCargo); 
+	alter table participacoes add constraint pk_pla primary key(idEvento, email);
 
-alter table pessoas add constraint pk_pes primary key(email); 
 
-alter table participacoes add constraint pk_pla primary key(idEvento, email); 
+	-- Chaves foreign
+	
+	alter table membros add constraint fk_memb foreign key (email) references pessoas(email);
+
+	alter table participantes add constraint fk_part foreign key (email) references pessoas(email);
+		
+	alter table participacoes add constraint fk_part_oes_ento foreign key (idEvento) references eventos(idEvento);
+
+	alter table participacoes add constraint fk_part_oes_mail foreign key (email) references pesosas(email);
+
+	alter table eventos add constraint fk_eve_equ foreign key (idEquipa) references equipas(idEquipa);
+
+	alter table mandatos add constraint fk_mand_carg foreign key (idCargo) references cargos(idCargo);
