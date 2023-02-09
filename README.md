@@ -16,6 +16,7 @@ The BEST Almada IT team is comprised of the following individuals:
 
 
 ### SQL Structure
+#### (provisório e possivelmente eliminável, mas por acessibilidade de estrutura, fica incluído)
 
 The following tables are used in the application:
 
