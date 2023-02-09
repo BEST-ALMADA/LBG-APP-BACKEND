@@ -34,7 +34,7 @@ The following tables are used in the application:
 
 This project is licensed under the MIT License.
 
-###Contributors
+### Contributors
 
 Thank you to the team for their contributions to this project and all the ITWG activities!
 
