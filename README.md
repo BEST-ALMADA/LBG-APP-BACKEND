@@ -8,11 +8,12 @@ This repository contains the back-end portion of the application being developed
 
 The BEST Almada IT team is comprised of the following individuals:
 
-* Francisco Freitas - [FranciscoJRFreitas](https://github.com/FranciscoJRFreitas)
-* Huili Zeng - [Huilizeng](https://github.com/Huilizeng)
-* Guilherme Barreiros - [JustAnotherTux](https://github.com/JustAnotherTux)
 * Duarte Cruz - [MagoPT](https://github.com/MagoPT)
+* Francisco Freitas - [FranciscoJRFreitas](https://github.com/FranciscoJRFreitas)
 * Francisco Santos - [mica-ferreira](https://github.com/mica-ferreira)
+* Guilherme Barreiros - [JustAnotherTux](https://github.com/JustAnotherTux)
+* Huili Zeng - [Huilizeng](https://github.com/Huilizeng)
+
 
 ### SQL Structure
 
@@ -38,9 +39,9 @@ This project is licensed under the MIT License.
 
 Thank you to the team for their contributions to this project and all the ITWG activities!
 
-* Francisco Freitas - [FranciscoJRFreitas](https://github.com/FranciscoJRFreitas)
-* Huili Zeng - [Huilizeng](https://github.com/Huilizeng)
-* Guilherme Barreiros - [JustAnotherTux](https://github.com/JustAnotherTux)
 * Duarte Cruz - [MagoPT](https://github.com/MagoPT)
+* Francisco Freitas - [FranciscoJRFreitas](https://github.com/FranciscoJRFreitas)
 * Francisco Santos - [mica-ferreira](https://github.com/mica-ferreira)
+* Guilherme Barreiros - [JustAnotherTux](https://github.com/JustAnotherTux)
+* Huili Zeng - [Huilizeng](https://github.com/Huilizeng)
 * (adicionar restantes membros do ITWG - BEST Almada)
