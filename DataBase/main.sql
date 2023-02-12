@@ -95,7 +95,7 @@ USE LBGAPP;
 
 	CREATE TABLE pessoas( 
 
-	email varchar(50), 
+	email varchar(250), 
 
 	descricao varchar(200), 
 
@@ -105,7 +105,7 @@ USE LBGAPP;
 
 	dataNascimento date, 
 
-	idade int(2), 
+	password varchar(1024), 
 
 	telemovel int(15), 
 
