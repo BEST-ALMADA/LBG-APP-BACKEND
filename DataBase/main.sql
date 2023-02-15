@@ -4,39 +4,40 @@ Create database LBGAPP;
 USE LBGAPP;	
 
 -- Criacao de tabelas 
-	CREATE TABLE eventos ( 
-	idEquipa int(4), 
+	CREATE TABLE eventos (
 
-	idEvento int(4), 
+		idEquipa int(4), 
 
-	nome varchar(30), 
+		idEvento int(4), 
 
-	descricao varchar(200), 
+		nome varchar(30), 
 
-	numTotalParticipantes int(4), 
+		descricao varchar(200), 
 
-	numAtualParticipantes int(4), 
+		numTotalParticipantes int(4), 
 
-	numAtualOrganizers int(4), 
+		numAtualParticipantes int(4), 
 
-	dataInicio date, 
+		numAtualOrganizers int(4), 
 
-	dataFim date,
+		dataInicio date, 
 
-	primary key(idEquipa,idEvento)
+		dataFim date,
+
+		primary key(idEquipa,idEvento)
 
 	); 
 
 
 	CREATE TABLE empresas( 
 
-	idEmpresa int(4), 
+		idEmpresa int(4), 
 
-	nome varchar(30), 
+		nome varchar(30), 
 
-	dinheiroFinanciado int(5),
+		dinheiroFinanciado int(5),
 
-	categoria varchar(80)
+		categoria varchar(80)
 
 	); 
 
@@ -44,122 +45,121 @@ USE LBGAPP;
 
 	CREATE TABLE documentos( 
 
-	idDocumento int(6), 
+		idDocumento int(6), 
 
-	tipo varchar(10), 
+		tipo varchar(10), 
 
-	nome varchar(50),
-	
-	dataCriacao Date, 
+		nome varchar(50),
 
-	localizacao varchar(200)
+		dataCriacao Date, 
+
+		localizacao varchar(200)
 
 	); 
 
 
 	CREATE TABLE equipas( 
 
-	idEquipa int(2), 
+		idEquipa int(2), 
 
-	nome varchar(20), 
+		nome varchar(20), 
 
-	numMembros int(2)
+		numMembros int(2)
 
 	);
 
 
 	CREATE TABLE cargos( 
 
-	idCargo int(3), 
+		idCargo int(3), 
 
-	nome varchar(30), 
+		nome varchar(30), 
 
-	descricao varchar(100) 
+		descricao varchar(100) 
 
 	); 
 
 
 	CREATE TABLE mandatos( 
 
-	idCargo int(3), 
+		idCargo int(3), 
 
-	email varchar(50), 
+		email varchar(50), 
 
-	dataInicio date, 
+		dataInicio date, 
 
-	dataFim date,
+		dataFim date,
 
-	primary key (idCargo,email,dataInicio)
+		primary key (idCargo,email,dataInicio)
 
 	); 
 
 
 	CREATE TABLE pessoas( 
 
-	email varchar(250), 
+		email varchar(50), 
 
-	descricao varchar(200), 
+		descricao varchar(200), 
 
-	nome varchar(100), 
+		nome varchar(100), 
 
-	alcunha varchar(25), 
+		alcunha varchar(25), 
 
-	dataNascimento date, 
+		dataNascimento date, 
 
-	password varchar(1024), 
+		password varchar(1024), 
 
-	telemovel int(15), 
+		telemovel int(15), 
 
-	tamanho varchar(8)
+		tamanho varchar(8)
 
 	); 
 
 		
 	CREATE TABLE membros( 
 
-	email varchar(50),
+		email varchar(50),
 
-	membership varchar(10), 
+		membership varchar(10), 
 
-	dataEntrada date, 
+		dataEntrada date, 
 
-	tempoLBGSemestres int(2), 
+		tempoLBGSemestres int(2), 
 
-	foto varchar(4096), 
+		foto varchar(4096), 
 
-	primary key (email)
+		primary key (email)
 
 	); 
-	
+
 
 	CREATE TABLE participantes( 
 
-	email varchar(50),
+		email varchar(50),
 
-	dataExpiracaoDoc date, 
+		dataExpiracaoDoc date, 
 
-	contactoEmerg int(15), 
+		contactoEmerg int(15), 
 
-	dieta varchar(30), 
+		dieta varchar(30), 
 
-	ultimaDataLogin date, 
+		ultimaDataLogin date, 
 
-	primary key (email)
+		primary key (email)
 
 	); 
 
 		
 	CREATE TABLE participacoes( 
 
-	IdEvento int(4), 
+		IdEvento int(4), 
 
-	email varchar(30), 
+		email varchar(30), 
 
-	dataInscricao date 
+		dataInscricao date 
 
 	); 
 		
-
 
 	-- Chaves primarias 
 

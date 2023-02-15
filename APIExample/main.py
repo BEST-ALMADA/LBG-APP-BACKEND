@@ -4,6 +4,8 @@ from configApp import app
 import pessoas
 import equipas
 import empresas
+import cargos
+import membros
 
 # http://127.0.0.1:5000/: Display only the table names in the database.
 @app.route('/', methods=['GET'])
@@ -31,7 +33,7 @@ def all():
     mysqlCloseConnection(conn)
     return jsonify(data)
 
-# http://127.0.0.1:5000/att: Same as all(), but with attributes displayed next to the values for better comprehension.
+# http://127.0.0.1:5000/att: Same as all(), but with attributes displayed next to the values in lexographical order for better comprehension.
 @app.route('/att')
 def att():
     conn = mysqlConnection()

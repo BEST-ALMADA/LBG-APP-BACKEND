@@ -15,10 +15,26 @@ def pessoasAll():
     mysqlCloseConnection(conn)
     return jsonify(records)
 
+@app.route('/pessoas/att', methods=['GET'])
+def pessoasAtt():
+    conn = mysqlConnection()
+    cursor = conn.cursor()
+    cursor.execute(f'SELECT * FROM pessoas;')
+    column_names = [i[0] for i in cursor.description]
+    data = cursor.fetchall()
+    rows = []
+    for row in data:
+        row_dict = {}
+        for i in range(len(column_names)):
+            row_dict[column_names[i]] = row[i]
+        rows.append(row_dict)
+    mysqlCloseConnection(conn)
+    return jsonify(rows)
+
 @app.route('/pessoas/describe', methods=['GET'])
 def pessoasDescribe():
     if 'email' not in request.args:
-        return "Error: No id field provided. Please specify an id."
+        return "Error: No email field provided. Please specify an email."
 
     email = request.args['email']
     conn = mysqlConnection()
@@ -30,7 +46,7 @@ def pessoasDescribe():
 @app.route('/pessoas/insert', methods=['GET'])
 def pessoasInsert():
     if 'email' not in request.args:
-        return "Error: No id field provided. Please specify an id."
+        return "Error: No email field provided. Please specify an email."
 
     email = request.args['email']
     descricao = request.args['descricao']
@@ -52,7 +68,7 @@ def pessoasInsert():
 @app.route('/pessoas/remove', methods=['GET'])
 def pessoasRemove():
     if 'email' not in request.args:
-        return "Error: No id field provided. Please specify an id."
+        return "Error: No email field provided. Please specify an email."
 
     email = request.args['email']
     
@@ -65,7 +81,7 @@ def pessoasRemove():
 @app.route('/pessoas/update', methods=['GET'])
 def pessoasUpdate():
     if 'email' not in request.args:
-        return "Error: No id field provided. Please specify an id."
+        return "Error: No email field provided. Please specify an email."
 
     conn = mysqlConnection()
     email = request.args['email']
