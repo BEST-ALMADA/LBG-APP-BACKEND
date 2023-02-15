@@ -5,6 +5,7 @@ import pessoas
 import equipas
 import empresas
 
+# http://127.0.0.1:5000/: Display only the table names in the database.
 @app.route('/', methods=['GET'])
 def home():
     conn = mysqlConnection()
@@ -14,6 +15,7 @@ def home():
     print(records)
     return jsonify(records)
 
+# http://127.0.0.1:5000/all: Display all tables and its corresponding inserted rows.
 @app.route('/all', methods=['GET'])
 def all():
     conn = mysqlConnection()
@@ -29,6 +31,7 @@ def all():
     mysqlCloseConnection(conn)
     return jsonify(data)
 
+# http://127.0.0.1:5000/att: Same as all(), but with attributes displayed next to the values for better comprehension.
 @app.route('/att')
 def att():
     conn = mysqlConnection()
