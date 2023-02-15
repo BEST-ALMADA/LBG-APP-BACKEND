@@ -29,5 +29,21 @@ def all():
     mysqlCloseConnection(conn)
     return jsonify(data)
 
-app.run()
+@app.route('/att')
+def att():
+    conn = mysqlConnection()
+    cursor = conn.cursor()
+    query = "SHOW TABLES;"
+    tables_unprocessed = mysqlQuery(conn, query)
+    tables = [t[0] for t in tables_unprocessed]
+    att = {}
+    for table in tables:
+        cursor.execute(f'SELECT * FROM {table};')
+        column_names = [i[0] for i in cursor.description]
+        cursor.fetchall()
+        att[table] = [table, column_names]
 
+    mysqlCloseConnection(conn)
+    return jsonify(att)
+
+app.run()
