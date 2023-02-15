@@ -48,7 +48,8 @@ USE LBGAPP;
 
 	tipo varchar(10), 
 
-	nome varchar(50), ada IT team is comprised of the following individu
+	nome varchar(50),
+	
 	dataCriacao Date, 
 
 	localizacao varchar(200)
@@ -64,7 +65,7 @@ USE LBGAPP;
 
 	numMembros int(2)
 
-	); 
+	);
 
 
 	CREATE TABLE cargos( 
