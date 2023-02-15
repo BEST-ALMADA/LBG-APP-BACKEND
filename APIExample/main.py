@@ -40,9 +40,14 @@ def att():
     for table in tables:
         cursor.execute(f'SELECT * FROM {table};')
         column_names = [i[0] for i in cursor.description]
-        cursor.fetchall()
-        att[table] = [table, column_names]
-
+        data = cursor.fetchall()
+        rows = []
+        for row in data:
+            row_dict = {}
+            for i in range(len(column_names)):
+                row_dict[column_names[i]] = row[i]
+            rows.append(row_dict)
+        att[table] = rows
     mysqlCloseConnection(conn)
     return jsonify(att)
 
