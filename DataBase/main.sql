@@ -1,7 +1,7 @@
 drop database LBGAPP;
 
 Create database LBGAPP;
-USE LBGAPP;	
+USE LBGAPP;
 
 -- Criacao de tabelas 
 
