@@ -4,9 +4,10 @@ Create database LBGAPP;
 USE LBGAPP;	
 
 -- Criacao de tabelas 
+
 	CREATE TABLE eventos (
 
-		idEquipa int(4), 
+		idEquipaEvento int(4), 
 
 		idEvento int(4), 
 
@@ -18,13 +19,34 @@ USE LBGAPP;
 
 		numAtualParticipantes int(4), 
 
-		numAtualOrganizers int(4), 
-
 		dataInicio date, 
 
 		dataFim date,
 
-		primary key(idEquipa,idEvento)
+		sponsors varchar(100),
+
+		contactosOrganizers varchar(100)
+
+	);
+
+	CREATE TABLE cargosEventos( 
+
+		idCargoEvento int(3),
+
+		nome varchar(30),
+
+		descricao varchar(200)
+
+	); 
+
+
+	CREATE TABLE equipasEventos(
+
+		idEquipaEvento int(3),
+
+		nome varchar(30),
+
+		numMembros int(2)
 
 	); 
 
@@ -40,7 +62,6 @@ USE LBGAPP;
 		categoria varchar(80)
 
 	); 
-
 		
 
 	CREATE TABLE documentos( 
@@ -51,7 +72,9 @@ USE LBGAPP;
 
 		nome varchar(50),
 
-		dataCriacao Date, 
+		descricao varchar(200),
+
+		dataCriacao date,
 
 		localizacao varchar(200)
 
@@ -60,9 +83,9 @@ USE LBGAPP;
 
 	CREATE TABLE equipas( 
 
-		idEquipa int(2), 
+		idEquipa int(2),
 
-		nome varchar(20), 
+		nome varchar(20),
 
 		numMembros int(2)
 
@@ -71,11 +94,11 @@ USE LBGAPP;
 
 	CREATE TABLE cargos( 
 
-		idCargo int(3), 
+		idCargo int(3),
 
-		nome varchar(30), 
+		nome varchar(30),
 
-		descricao varchar(100) 
+		descricao varchar(200)
 
 	); 
 
@@ -97,19 +120,19 @@ USE LBGAPP;
 
 	CREATE TABLE pessoas( 
 
-		email varchar(50), 
+		email varchar(50),
 
-		descricao varchar(200), 
+		descricao varchar(200),
 
-		nome varchar(100), 
+		nome varchar(100),
 
-		alcunha varchar(25), 
+		alcunha varchar(25),
 
-		dataNascimento date, 
+		dataNascimento date,
 
-		password varchar(1024), 
+		password varchar(1024),
 
-		telemovel int(15), 
+		telemovel int(15),
 
 		tamanho varchar(8)
 
@@ -120,13 +143,13 @@ USE LBGAPP;
 
 		email varchar(50),
 
-		membership varchar(10), 
+		membership varchar(10),
 
-		dataEntrada date, 
+		dataEntrada date,
 
-		tempoLBGSemestres int(2), 
+		tempoLBGSemestres int(2),
 
-		foto varchar(4096), 
+		foto varchar(4096),
 
 		primary key (email)
 
@@ -137,13 +160,13 @@ USE LBGAPP;
 
 		email varchar(50),
 
-		dataExpiracaoDoc date, 
+		dataExpiracaoDoc date,
 
-		contactoEmerg int(15), 
+		contactoEmerg int(15),
 
-		dieta varchar(30), 
+		dieta varchar(30),
 
-		ultimaDataLogin date, 
+		ultimaDataLogin date,
 
 		primary key (email)
 
@@ -152,26 +175,32 @@ USE LBGAPP;
 		
 	CREATE TABLE participacoes( 
 
-		IdEvento int(4), 
+		IdEvento int(4),
 
-		email varchar(30), 
+		email varchar(30),
 
-		dataInscricao date 
+		dataInscricao date
 
 	); 
 		
 
 	-- Chaves primarias 
 
-	alter table empresas add constraint pk_emp primary key(idEmpresa); 
+	alter table empresas add constraint pk_emp primary key(idEmpresa);
 
-	alter table documentos add constraint pk_doc primary key(idDocumento); 
+	alter table documentos add constraint pk_doc primary key(idDocumento);
+
+	alter table eventos add constraint pk_eve primary key(idEvento);
 
 	alter table equipas add constraint pk_eqp primary key(idEquipa);
 
-	alter table cargos add constraint pk_crg primary key(idCargo); 
+	alter table cargos add constraint pk_crg primary key(idCargo);
 
-	alter table pessoas add constraint pk_pes primary key(email); 
+	alter table equipasEventos add constraint pk_eqp_eve primary key(idEquipaEvento);
+
+	alter table cargosEventos add constraint pk_crg_eve primary key(idCargoEvento);
+
+	alter table pessoas add constraint pk_pes primary key(email);
 
 	alter table participacoes add constraint pk_pla primary key(idEvento, email);
 
@@ -186,6 +215,6 @@ USE LBGAPP;
 
 	alter table participacoes add constraint fk_part_oes_mail foreign key (email) references pesosas(email);
 
-	alter table eventos add constraint fk_eve_equ foreign key (idEquipa) references equipas(idEquipa);
+	alter table eventos add constraint fk_eve_equ foreign key (idEquipaEvento) references equipasEventos(idEquipaEvento);
 
 	alter table mandatos add constraint fk_mand_carg foreign key (idCargo) references cargos(idCargo);
