@@ -13,7 +13,7 @@ USE LBGAPP;
 
 		nome varchar(30), 
 
-		descricao varchar(200), 
+		descricao varchar(2000), 
 
 		numTotalParticipantes int(4), 
 
@@ -25,7 +25,7 @@ USE LBGAPP;
 
 		sponsors varchar(100),
 
-		contactosOrganizers varchar(100)
+		contactosCoordenacao varchar(100)
 
 	);
 
