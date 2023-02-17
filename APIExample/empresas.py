@@ -4,7 +4,7 @@ from configApp import app
 
 @app.route('/empresas', methods=['GET'])
 def empresas():
-    accessPoints = ["all", "describe", "insert", "remove"]
+    accessPoints = ["all", "att", "describe", "insert", "remove"]
     return jsonify(accessPoints)
 
 @app.route('/empresas/all', methods=['GET'])

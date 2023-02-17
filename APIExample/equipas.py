@@ -4,7 +4,7 @@ from configApp import app
 
 @app.route('/equipas', methods=['GET'])
 def equipas():
-    accessPoints = ["all", "describe", "insert", "remove"]
+    accessPoints = ["all", "att", "describe", "insert", "remove"]
     return jsonify(accessPoints)
 
 @app.route('/equipas/all', methods=['GET'])

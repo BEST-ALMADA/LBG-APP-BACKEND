@@ -6,6 +6,12 @@ import equipas
 import empresas
 import cargos
 import membros
+import eventos
+import cargosEventos
+import equipasEventos
+import documentos
+import mandatos
+import participacoes
 
 # http://127.0.0.1:5000/: Display only the table names in the database.
 @app.route('/', methods=['GET'])

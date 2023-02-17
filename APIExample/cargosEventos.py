@@ -2,24 +2,24 @@ from flask import request, jsonify
 from mysqlAccess import mysqlConnection, mysqlCloseConnection, mysqlQuery, mysqlInsert, mysqlUpdate
 from configApp import app
 
-@app.route('/cargos', methods=['GET'])
-def cargos():
+@app.route('/cargosEventos', methods=['GET'])
+def cargosEventos():
     accessPoints = ["all", "att", "describe", "insert", "remove"]
     return jsonify(accessPoints)
 
-@app.route('/cargos/all', methods=['GET'])
-def cargosAll():
+@app.route('/cargosEventos/all', methods=['GET'])
+def cargosEventosAll():
     conn = mysqlConnection()
-    query = "SELECT * FROM cargos;"
+    query = "SELECT * FROM cargosEventos;"
     records = mysqlQuery(conn, query)
     mysqlCloseConnection(conn)
     return jsonify(records)
 
-@app.route('/cargos/att', methods=['GET'])
-def cargosAtt():
+@app.route('/cargosEventos/att', methods=['GET'])
+def cargosEventosAtt():
     conn = mysqlConnection()
     cursor = conn.cursor()
-    cursor.execute(f'SELECT * FROM cargos;')
+    cursor.execute(f'SELECT * FROM cargosEventos;')
     column_names = [i[0] for i in cursor.description]
     data = cursor.fetchall()
     rows = []
@@ -31,71 +31,71 @@ def cargosAtt():
     mysqlCloseConnection(conn)
     return jsonify(rows)
 
-@app.route('/cargos/describe', methods=['GET'])
-def cargosDescribe():
-    if 'idCargo' not in request.args:
+@app.route('/cargosEventos/describe', methods=['GET'])
+def cargosEventosDescribe():
+    if 'idCargoEvento' not in request.args:
         return "Error: No id field provided. Please specify an id."
 
-    idCargo = request.args['idCargo']
+    idCargoEvento = request.args['idCargoEvento']
     conn = mysqlConnection()
-    query = "SELECT * FROM cargos where idCargo = '"+idCargo+"';"
+    query = "SELECT * FROM cargosEventos where idCargoEvento = '"+idCargoEvento+"';"
     records = mysqlQuery(conn, query)
     mysqlCloseConnection(conn)
     return jsonify(records)
 
-@app.route('/cargos/insert', methods=['GET'])
-def cargosInsert():
-    if 'idCargo' not in request.args:
+@app.route('/cargosEventos/insert', methods=['GET'])
+def cargosEventosInsert():
+    if 'idCargoEvento' not in request.args:
         return "Error: No id field provided. Please specify an id."
 
-    idCargo = request.args['idCargo']
+    idCargoEvento = request.args['idCargoEvento']
     nome = request.args['nome']
     descricao = request.args['descricao']
     
     conn = mysqlConnection()
-    query = "INSERT INTO cargos ( idCargo, nome, descricao ) VALUES( '"+idCargo+"', '"+nome+"' , '"+descricao+"' );"
+    query = "INSERT INTO cargosEventos ( idCargoEvento, nome, descricao ) VALUES( '"+idCargoEvento+"', '"+nome+"' , '"+descricao+"' );"
     print(query)
     records = mysqlInsert(conn, query)
     mysqlCloseConnection(conn)
     print(records)
     return jsonify(records)
 
-@app.route('/cargos/remove', methods=['GET'])
-def cargosRemove():
-    if 'idCargo' not in request.args:
+@app.route('/cargosEventos/remove', methods=['GET'])
+def cargosEventosRemove():
+    if 'idCargoEvento' not in request.args:
         return "Error: No id field provided. Please specify an id."
 
-    idCargo = request.args['idCargo']
+    idCargoEvento = request.args['idCargoEvento']
     
     conn = mysqlConnection()
-    query = "DELETE FROM cargos WHERE idCargo='"+idCargo+"';" 
+    query = "DELETE FROM cargosEventos WHERE idCargoEvento='"+idCargoEvento+"';" 
     records = mysqlUpdate(conn, query)
     mysqlCloseConnection(conn)
     return jsonify(records)
 
-@app.route('/cargos/update', methods=['GET'])
-def cargosUpdate():
-    if 'idCargo' not in request.args:
+@app.route('/cargosEventos/update', methods=['GET'])
+def cargosEventosUpdate():
+    if 'idCargoEvento' not in request.args:
         return "Error: No id field provided. Please specify an id."
 
     conn = mysqlConnection()
-    idCargo = request.args['idCargo']
+    idCargoEvento = request.args['idCargoEvento']
     
     if 'nome' not in request.args:
-        query = "SELECT nome FROM cargos WHERE idCargo='"+idCargo+"';"
+        query = "SELECT nome FROM cargosEventos WHERE idCargoEvento='"+idCargoEvento+"';"
         records = mysqlQuery(conn, query)
         nome = str(records[0][0])
     else:
         nome = request.args['nome']
 
     if 'descricao' not in request.args:
-        query = "SELECT descricao FROM cargos WHERE idCargo='"+idCargo+"';"
+        query = "SELECT descricao FROM cargosEventos WHERE idCargoEvento='"+idCargoEvento+"';"
         records = mysqlQuery(conn, query)
         descricao = str(records[0][0])
     else:
         descricao = request.args['descricao']
     
-    query = "UPDATE cargos SET nome='"+nome+"', descricao='"+descricao+"' WHERE idCargo='"+idCargo+"';" 
+    query = "UPDATE cargosEventos SET nome='"+nome+"', descricao='"+descricao+"' WHERE idCargoEvento='"+idCargoEvento+"';" 
 
     records = mysqlUpdate(conn, query)
     mysqlCloseConnection(conn)

@@ -37,7 +37,7 @@ USE LBGAPP;
 
 		descricao varchar(200)
 
-	); 
+	);
 
 
 	CREATE TABLE equipasEventos(
@@ -48,7 +48,7 @@ USE LBGAPP;
 
 		numMembros int(2)
 
-	); 
+	);
 
 
 	CREATE TABLE empresas( 
