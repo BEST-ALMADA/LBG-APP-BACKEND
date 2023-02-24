@@ -137,7 +137,7 @@ def mandatosUpdate():
     else:
         dataFim = request.args['dataFim']
     
-    query = "UPDATE mandatos SET dataFim='"+dataFim+"' WHERE idCargo='{idCargo}' AND email='{email}' AND dataInicio='{dataInicio}';"
+    query = f"UPDATE mandatos SET dataFim='{dataFim}' WHERE idCargo='{idCargo}' AND email='{email}' AND dataInicio='{dataInicio}';"
     records = mysqlUpdate(conn, query)
     mysqlCloseConnection(conn)
     return jsonify(records)

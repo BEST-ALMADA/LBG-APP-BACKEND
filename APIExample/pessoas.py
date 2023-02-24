@@ -136,7 +136,7 @@ def pessoasUpdate():
         tamanho = request.args['tamanho']
     
     
-    query = "UPDATE pessoas SET descricao='"+descricao+"', nome='"+nome+"', alcunha='"+alcunha+"', dataNascimento='"+dataNascimento+"', password='"+password+"', telemovel="+telemovel+", tamanho='"+tamanho+"' WHERE email='"+email+"';" 
+    query = "UPDATE pessoas SET descricao='"+descricao+"', nome='"+nome+"', alcunha='"+alcunha+"', dataNascimento='"+dataNascimento+"', password='"+password+"', telemovel='"+telemovel+"', tamanho='"+tamanho+"' WHERE email='"+email+"';" 
 
     records = mysqlUpdate(conn, query)
     mysqlCloseConnection(conn)

@@ -156,7 +156,7 @@ USE LBGAPP;
 	); 
 
 
-	CREATE TABLE participantes( 
+	CREATE TABLE participantes(
 
 		email varchar(50),
 

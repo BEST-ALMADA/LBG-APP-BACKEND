@@ -12,6 +12,7 @@ import equipasEventos
 import documentos
 import mandatos
 import participacoes
+import participantes
 
 # http://127.0.0.1:5000/: Display only the table names in the database.
 @app.route('/', methods=['GET'])
